@@ -62,9 +62,8 @@ class _HomeState extends State<Home> {
             : Text("Pressione Play"),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.play_arrow,
-        ),
+        child:
+            Icon(_controller.value.isPlaying ? Icons.pause : Icons.play_arrow),
         onPressed: () {
           setState(() {
             //Testando se esta reproduzindo
