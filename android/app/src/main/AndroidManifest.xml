@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.playing_video">
+    <uses-permission android:name"android.permission.INTERNET"/>
    <application
         android:label="playing_video"
         android:icon="@mipmap/ic_launcher">

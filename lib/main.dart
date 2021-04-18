@@ -24,6 +24,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+    /* 
     _controller = VideoPlayerController.network("link do video")
       ..initialize().then(
         (_) {
@@ -32,8 +33,15 @@ class _HomeState extends State<Home> {
             _controller.play();
           });
         },
-      ); //.. => operador de chamada de metodo de cascata
+        );
+        */
+    //.. => operador de chamada de metodo de cascata
     //o retorno e desconsiderado, e retorna o video player
+    _controller = VideoPlayerController.asset("videos/exemplo.mp4")
+      ..setLooping(true)
+      ..initialize().then((_) {
+        _controller.play();
+      });
   }
 
   @override
