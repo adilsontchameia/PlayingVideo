@@ -38,9 +38,12 @@ class _HomeState extends State<Home> {
     //.. => operador de chamada de metodo de cascata
     //o retorno e desconsiderado, e retorna o video player
     _controller = VideoPlayerController.asset("videos/exemplo.mp4")
+      //Repeticao ativada
       ..setLooping(true)
       ..initialize().then((_) {
-        _controller.play();
+        setState(() {
+          //_controller.play();
+        });
       });
   }
 
@@ -49,10 +52,27 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: Center(
         //Tamanho da exibicao - largura/altura 800 / 600
-        child: AspectRatio(
-          aspectRatio: _controller.value.aspectRatio,
-          child: VideoPlayer(_controller),
+        //caso seja verdadeiro
+        child: _controller.value.initialized
+            ? AspectRatio(
+                aspectRatio: _controller.value.aspectRatio,
+                child: VideoPlayer(_controller),
+              )
+            //Caso nao for inicializado
+            : Text("Pressione Play"),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.play_arrow,
         ),
+        onPressed: () {
+          setState(() {
+            //Testando se esta reproduzindo
+            _controller.value.isPlaying
+                ? _controller.pause()
+                : _controller.play();
+          });
+        },
       ),
     );
   }
